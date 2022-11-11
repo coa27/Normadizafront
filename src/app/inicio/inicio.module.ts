@@ -6,6 +6,7 @@ import { InicioComponent } from './pages/inicio/inicio.component';
 import { InformacionComponent } from './pages/informacion/informacion.component';
 
 import {ButtonModule} from 'primeng/button';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -17,7 +18,8 @@ import {ButtonModule} from 'primeng/button';
   imports: [
     CommonModule,
     InicioRoutingModule,
-    ButtonModule
+    ButtonModule,
+    RouterModule
   ]
 })
 export class InicioModule { }
