@@ -32,9 +32,7 @@ export class RegistroComponent implements OnInit {
             nombre: this.registro.value['usuario'],
             contrasenia: this.registro.value['password'],
             email: this.registro.value['email'],
-        }).subscribe( usuario => {
-            this.router.navigate(["/tableros/"])
-        });
+        }).subscribe();
     }
 
     iniciarSesion() {

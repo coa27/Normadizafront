@@ -25,10 +25,7 @@ export class LoginComponent implements OnInit {
         }
 
         this.authService.iniciarSesion({emailOrUsuario: this.login.value["username"], password: this.login.value["password"]})
-            .subscribe( data => {
-                this.router.navigate(['/tableros/'])
-                sessionStorage.setItem("token", data.token)
-            })
+            .subscribe(data => this.router.navigate(['/tableros/']))
     }
 
     registrarse(){
