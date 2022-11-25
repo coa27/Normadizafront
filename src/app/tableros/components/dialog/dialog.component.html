@@ -1,0 +1,44 @@
+<p-dialog
+    [visible]="estado"
+    appendTo="body"
+    [modal]="true"
+    [breakpoints]="{ '960px': '75vw', '640px': '100vw' }"
+    [style]="{ width: '40vw' }"
+    [header]="titulo"
+    [draggable]="false"
+    [resizable]="false"
+>
+    <div
+        class="flex flex-wrap border-top-1 surface-border pt-4 justify-content-center"
+    >
+        <form [formGroup]="editar">
+            <input
+                type="text"
+                class="text-center appearance-none border-none p-3 w-full outline-none text-xl block mb-4 bg-black-alpha-10 text-black-alpha-60"
+                [placeholder]="nombre"
+                style="border-radius: 30px"
+                formControlName="nombre"
+            />
+        </form>
+    </div>
+
+    <ng-template pTemplate="footer">
+        <div class="border-top-1 surface-border pt-3">
+            <button
+                pButton
+                pRipple
+                icon="pi pi-times"
+                label="Cancelar"
+                (click)="cerrar({estado: false})"
+                class="p-button-text"
+            ></button>
+            <button
+                pButton
+                pRipple
+                icon="pi pi-check"
+                (click)="cerrar({estado: true});"
+                label="Guardar"
+            ></button>
+        </div>
+    </ng-template>
+</p-dialog>
