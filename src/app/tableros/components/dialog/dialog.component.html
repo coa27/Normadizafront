@@ -10,16 +10,55 @@
 >
     <div
         class="flex flex-wrap border-top-1 surface-border pt-4 justify-content-center"
-    >
-        <form [formGroup]="editar">
-            <input
-                type="text"
-                class="text-center appearance-none border-none p-3 w-full outline-none text-xl block mb-4 bg-black-alpha-10 text-black-alpha-60"
-                [placeholder]="nombre"
-                style="border-radius: 30px"
-                formControlName="nombre"
-            />
-        </form>
+        >
+
+        <div *ngIf="tarea; else elseBlock">
+            <form [formGroup]="editar">
+                <input
+                    type="text"
+                    class="text-center appearance-none border-none p-3 w-full outline-none text-xl block mb-4 bg-black-alpha-10 text-black-alpha-60"
+                    [placeholder]="tarea.nombre"
+                    style="border-radius: 30px"
+                    formControlName="nombre"
+                />
+
+                <input
+                    type="text"
+                    class="text-center appearance-none border-none p-3 w-full outline-none text-xl block mb-4 bg-black-alpha-10 text-black-alpha-60"
+                    [placeholder]="tarea.descripcion"
+                    style="border-radius: 30px"
+                    formControlName="descripcion"
+                />
+                <input
+                    type="text"
+                    class="text-center appearance-none border-none p-3 w-full outline-none text-xl block mb-4 bg-black-alpha-10 text-black-alpha-60"
+                    [placeholder]="tarea.fechaInicio"
+                    style="border-radius: 30px"
+                    formControlName="Fecha inicio"
+                />
+                <input
+                    type="text"
+                    class="text-center appearance-none border-none p-3 w-full outline-none text-xl block mb-4 bg-black-alpha-10 text-black-alpha-60"
+                    [placeholder]="tarea.fechaFin"
+                    style="border-radius: 30px"
+                    formControlName="Fecha Fin"
+                />
+            </form>
+        </div>
+
+        <ng-template #elseBlock>
+            <form [formGroup]="editar">
+                <input
+                    type="text"
+                    class="text-center appearance-none border-none p-3 w-full outline-none text-xl block mb-4 bg-black-alpha-10 text-black-alpha-60"
+                    [placeholder]="nombre"
+                    style="border-radius: 30px"
+                    formControlName="nombre"
+                />
+            </form>
+        </ng-template>
+
+
     </div>
 
     <ng-template pTemplate="footer">
@@ -29,14 +68,14 @@
                 pRipple
                 icon="pi pi-times"
                 label="Cancelar"
-                (click)="cerrar({estado: false})"
+                (click)="cerrar({ estado: false })"
                 class="p-button-text"
             ></button>
             <button
                 pButton
                 pRipple
                 icon="pi pi-check"
-                (click)="cerrar({estado: true});"
+                (click)="cerrar({ estado: true })"
                 label="Guardar"
             ></button>
         </div>

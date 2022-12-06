@@ -61,3 +61,18 @@ export const editarTablerosError = createAction(
     '[Tableros] Editar Tablero Error',
     props<{ error: any }>()
 );
+
+//obtener tablero unico
+export const obtenerTablero = createAction(
+    '[Tableros] Obtener Tablero Unico',
+    props<{ id: number }>()
+);
+
+export const obtenerTableroExitoso = createAction(
+    '[Tableros] Obtener Tablero Unico Exitoso',
+    props<{ tablero: Tablero }>()
+);
+export const obtenerTableroError = createAction(
+    '[Tableros] Obtener Tablero Unico Error',
+    props<{ error: any }>()
+);

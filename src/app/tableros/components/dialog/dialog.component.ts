@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DialogComunnication } from '../../interfaces/dialog';
+import { Tarea } from '../../interfaces/tarea';
 
 @Component({
     selector: 'app-dialog',
@@ -9,13 +10,21 @@ import { DialogComunnication } from '../../interfaces/dialog';
 })
 export class DialogComponent {
 
+    @Input() titulo!: string;
+
     @Input() estado!: boolean;
     @Input() nombre!: string;
-    @Input() titulo!: string;
+
+    @Input() tarea: Tarea | undefined;
+
     @Output() onAction: EventEmitter<DialogComunnication> = new EventEmitter<DialogComunnication>();
 
     editar: FormGroup = this.fb.group({
         nombre: ['', [Validators.required]],
+        descripcion: ['', [Validators.required]],
+        fechaInicio: ['', [Validators.required]],
+        fechaFin: ['', [Validators.required]],
+
         color: ['', [Validators.required]],
     });
 

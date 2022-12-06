@@ -8,6 +8,8 @@ import { TablerosComponent } from './pages/tableros/tableros.component';
 import { NgprimeModule } from '../shared/ngprime/ngprime.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DialogComponent } from './components/dialog/dialog.component';
+import { PendientePipe } from './pipes/pendiente.pipe';
+import { ColorPipe } from './pipes/color.pipe';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { DialogComponent } from './components/dialog/dialog.component';
     TableroComponent,
     CuentaComponent,
     TablerosComponent,
-    DialogComponent
+    DialogComponent,
+    PendientePipe,
+    ColorPipe
   ],
   imports: [
     CommonModule,

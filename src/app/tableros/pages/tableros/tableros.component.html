@@ -13,7 +13,10 @@
                 "
             >
                 <div class="p-4 border-round surface-card h-full">
-                    <div class="flex mb-3">
+                    <div
+                        class="flex mb-3 cursor-pointer"
+                        (click)="irTablero(tablero)"
+                    >
                         <div class="ml-2">
                             <div
                                 class="text-xs flex align-items-center text-700"
@@ -34,7 +37,8 @@
                         </div>
                     </div>
                     <div
-                        class="text-xl text-900 font-medium mb-3 line-height-3"
+                        class="text-xl text-900 font-medium mb-3 line-height-3 cursor-pointer"
+                        (click)="irTablero(tablero)"
                     >
                         {{ tablero.nombre }}
                     </div>
@@ -64,10 +68,10 @@
 
 <ng-template [ngIf]="elementosTotales > 5">
     <p-paginator
-    [rows]="size"
-    [totalRecords]="elementosTotales"
-    (onPageChange)="paginate($event)"
-    [showFirstLastIcon]="false"
+        [rows]="size"
+        [totalRecords]="elementosTotales"
+        (onPageChange)="paginate($event)"
+        [showFirstLastIcon]="false"
     ></p-paginator>
 </ng-template>
 
@@ -87,6 +91,9 @@
     (click)="agregarTablero()"
 ></button>
 
-<p-confirmDialog [style]="{width: '80vw'}" [baseZIndex]="10000"></p-confirmDialog>
+<p-confirmDialog
+    [style]="{ width: '80vw' }"
+    [baseZIndex]="10000"
+></p-confirmDialog>
 
 <p-toast position="bottom-center"></p-toast>

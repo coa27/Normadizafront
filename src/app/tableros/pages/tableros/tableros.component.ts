@@ -7,12 +7,13 @@ import { TablerosService } from '../../services/tableros.service';
 import * as actionsTablero from '../../store/actions';
 import { AppState } from '../../store/app.reducer';
 import { ConfirmationService, Message, MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-tableros',
     templateUrl: './tableros.component.html',
     styleUrls: ['./tableros.component.scss'],
-    providers: [ConfirmationService, MessageService]
+    providers: [ConfirmationService, MessageService],
 })
 export class TablerosComponent {
     usuario!: Usuario;
@@ -31,7 +32,8 @@ export class TablerosComponent {
         private tableroService: TablerosService,
         private confirmationService: ConfirmationService,
         private messageService: MessageService,
-        private store: Store<AppState>
+        private store: Store<AppState>,
+        private router: Router
     ) {
         this.tableroService
             .obtenerUsuario()
@@ -53,12 +55,17 @@ export class TablerosComponent {
 
     confirmar(tablero: Tablero) {
         this.confirmationService.confirm({
-            message: "¿Quieres eliminar el tablero: " + tablero.nombre + "?",
-            header: "Eliminar Tablero",
-            icon: "pi pi-info-circle",
+            message: '¿Quieres eliminar el tablero: ' + tablero.nombre + '?',
+            header: 'Eliminar Tablero',
+            icon: 'pi pi-info-circle',
             accept: () => {
-                this.eliminarTablero(tablero)
-                this.messageService.add({closable: false, severity: "success", summary: "Eliminado", detail:"Tablero Eliminado Correctamente"})
+                this.eliminarTablero(tablero);
+                this.messageService.add({
+                    closable: false,
+                    severity: 'success',
+                    summary: 'Eliminado',
+                    detail: 'Tablero Eliminado Correctamente',
+                });
             },
         });
     }
@@ -105,5 +112,9 @@ export class TablerosComponent {
                 size: evento.rows,
             })
         );
+    }
+
+    irTablero(tablero: Tablero) {
+        this.router.navigateByUrl('/tableros/tablero/' + tablero.idTablero);
     }
 }

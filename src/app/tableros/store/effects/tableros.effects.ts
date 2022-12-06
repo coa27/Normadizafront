@@ -15,7 +15,7 @@ export class TablerosEffects {
         this.actions$.pipe(
             ofType(tablerosActions.obtenerTableros),
             mergeMap((data) =>
-                this.tableroService.obtenerTablero(data.page, data.size).pipe(
+                this.tableroService.obtenerTableros(data.page, data.size).pipe(
                     map((paginacion) =>
                         tablerosActions.obtenerTablerosExitoso({
                             paginacion,
@@ -67,6 +67,21 @@ export class TablerosEffects {
                     .pipe(
                         map((tablero) =>
                             tablerosActions.editarTableroExitoso({ tablero })
+                        )
+                    )
+            )
+        )
+    );
+
+    obtenerTablero$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(tablerosActions.obtenerTablero),
+            mergeMap((data) =>
+                this.tableroService
+                    .obtenerTablero( data.id )
+                    .pipe(
+                        map((tablero) =>
+                            tablerosActions.obtenerTableroExitoso({ tablero })
                         )
                     )
             )

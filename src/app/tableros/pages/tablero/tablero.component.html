@@ -1,1 +1,56 @@
-<p>tablero works!</p>
+<div class="surface-card shadow-2 border-round p-4">
+    <div class="flex justify-content-between align-items-center mb-5">
+        <span class="text-xl text-900 font-medium">{{
+            tablero[0].nombre
+        }}</span>
+    </div>
+    <ul class="list-none p-0 m-0">
+        <div *ngFor="let tarea of tareas">
+            <li
+                class="flex flex-column md:flex-row md:align-items-center md:justify-content-between p-3 border-1 mb-3"
+                style="
+                    border-radius: 10px;
+                    background-color: rgba(234, 179, 10, 0.1);
+                    border-color: rgba(234, 179, 10, 0.5);
+                "
+            >
+                <div>
+                    <div>
+                        <span
+                            class="inline-flex justify-content-center align-items-center w-2rem h-2rem border-circle border-1"
+                            style="border-color: rgba(234, 179, 10, 0.5)"
+                        >
+                            <i class="pi pi-file text-yellow-700"></i>
+                        </span>
+                        <span class="text-yellow-700 font-bold ml-2"
+                            >{{tarea.nombre}}</span
+                        >
+                    </div>
+                    <p class="text-yellow-700 mt-2 mb-0">
+                        Vence: <span class="font-medium">{{tarea.fechaFin}}</span>
+                    </p>
+                </div>
+                <div
+                    class="flex align-items-center justify-content-between md:justify-content-end mt-3 md:mt-0"
+                >
+                    <span
+                        class="bg-yellow-400 text-yellow-900 font-bold text-sm py-1 px-2"
+                        style="border-radius: 10px"
+                        >{{tarea.finalizado | Pendiente}}</span
+                    >
+                    <div class="text-right ml-3">
+                        <button pButton pRipple type="button" icon="pi pi-ellipsis-v" class="p-button-rounded p-button-secondary p-button-text" (click)="menu.toggle($event); tareaEditar = tarea"></button>
+                        <p-menu #menu [popup]="true" [model]="items" (onHide)="tareaEditar = undefined"></p-menu>
+                    </div>
+                </div>
+            </li>
+        </div>
+    </ul>
+
+    <app-dialog [estado]="estado"
+    [tarea]="tareaEditar"
+    [titulo]="titulo">
+
+    </app-dialog>
+
+</div>

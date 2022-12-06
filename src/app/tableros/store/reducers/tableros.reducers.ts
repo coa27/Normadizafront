@@ -97,28 +97,50 @@ export const _tableroReducer = createReducer(
     })),
 
     on(actions.editarTableroExitoso, (state, { tablero }) => {
-        const tableros: Tablero[] = state.tableros.filter(t => t.idTablero !== tablero.idTablero)
-        tableros.push(tablero)
+        const tableros: Tablero[] = state.tableros.filter(
+            (t) => t.idTablero !== tablero.idTablero
+        );
+        tableros.push(tablero);
         const t: Tablero[] = tableros.sort((t1, t2) => {
-            if(t1.idTablero > t2.idTablero){
+            if (t1.idTablero > t2.idTablero) {
                 return 1;
             }
-            if(t1.idTablero < t2.idTablero){
+            if (t1.idTablero < t2.idTablero) {
                 return -1;
             }
 
             return 0;
-        })
+        });
 
         return {
             ...state,
             cargado: true,
             cargando: false,
-            tableros: t
+            tableros: t,
         };
     }),
 
     on(actions.editarTablerosError, (state, { error }) => ({
+        ...state,
+        cargado: true,
+        cargando: false,
+        error,
+    })),
+
+    //EDITAR
+    on(actions.obtenerTablero, (state, { id }) => ({
+        ...state,
+        cargando: true,
+    })),
+
+    on(actions.obtenerTableroExitoso, (state, { tablero }) => ({
+        ...state,
+        cargado: true,
+        cargando: false,
+        tableros: [tablero],
+    })),
+
+    on(actions.obtenerTableroError, (state, { error }) => ({
         ...state,
         cargado: true,
         cargando: false,

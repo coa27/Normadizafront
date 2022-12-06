@@ -26,7 +26,7 @@ export class TablerosService {
         return this.http.get<Usuario>(`${this.url}/usuario/perfil`, { headers: this.headers } );
     }
 
-    obtenerTablero(page: number, size: number): Observable<Paginacion>{
+    obtenerTableros(page: number, size: number): Observable<Paginacion>{
         return this.http.get<Paginacion>(`${this.url}/tablero?page=${page}&size=${size}`, { headers: this.headers});
     }
 
@@ -42,5 +42,8 @@ export class TablerosService {
         return this.http.post<Tablero>(`${this.url}/tablero`, tablero, {headers: this.headers});
     }
 
+    obtenerTablero(id: number): Observable<Tablero>{
+        return this.http.get<Tablero>(`${this.url}/tablero/${id}`, { headers: this.headers});
+    }
 
 }
