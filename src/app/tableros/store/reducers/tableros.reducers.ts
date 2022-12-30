@@ -127,7 +127,7 @@ export const _tableroReducer = createReducer(
         error,
     })),
 
-    //EDITAR
+    //obtener
     on(actions.obtenerTablero, (state, { id }) => ({
         ...state,
         cargando: true,

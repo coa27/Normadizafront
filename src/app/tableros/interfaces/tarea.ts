@@ -6,14 +6,12 @@ export interface TareasTotales {
 }
 
 export interface Tarea {
-    id: number;
+    id?: number;
     nombre: string;
     descripcion: string;
     finalizado: boolean;
-    fechaInicio: string;
-    fechaFin: string;
-    createAt?: string;
-    updatedAt?: string;
+    fechaInicio: string | null;
+    fechaFin: string | null;
     idTablero: number;
 }
 

@@ -1,5 +1,5 @@
 <p-dialog
-    [visible]="estado"
+    [visible]="true"
     appendTo="body"
     [modal]="true"
     [breakpoints]="{ '960px': '75vw', '640px': '100vw' }"
@@ -10,40 +10,39 @@
 >
     <div
         class="flex flex-wrap border-top-1 surface-border pt-4 justify-content-center"
-        >
-
-        <div *ngIf="tarea; else elseBlock">
-            <form [formGroup]="editar">
+    >
+        <div *ngIf="tarea !== undefined; else elseBlock">
+            <form [formGroup]="tareaInfo">
                 <input
                     type="text"
                     class="text-center appearance-none border-none p-3 w-full outline-none text-xl block mb-4 bg-black-alpha-10 text-black-alpha-60"
-                    [placeholder]="tarea.nombre"
+                    placeholder="Nombre"
                     style="border-radius: 30px"
                     formControlName="nombre"
                 />
 
-                <input
-                    type="text"
+                <textarea
+                    rows="5"
+                    cols="20"
+                    pInputTextarea
                     class="text-center appearance-none border-none p-3 w-full outline-none text-xl block mb-4 bg-black-alpha-10 text-black-alpha-60"
-                    [placeholder]="tarea.descripcion"
+                    placeholder="Descripcion"
                     style="border-radius: 30px"
                     formControlName="descripcion"
-                />
-                <input
-                    type="text"
-                    class="text-center appearance-none border-none p-3 w-full outline-none text-xl block mb-4 bg-black-alpha-10 text-black-alpha-60"
-                    [placeholder]="tarea.fechaInicio"
-                    style="border-radius: 30px"
-                    formControlName="Fecha inicio"
-                />
-                <input
-                    type="text"
-                    class="text-center appearance-none border-none p-3 w-full outline-none text-xl block mb-4 bg-black-alpha-10 text-black-alpha-60"
-                    [placeholder]="tarea.fechaFin"
-                    style="border-radius: 30px"
-                    formControlName="Fecha Fin"
-                />
+                ></textarea>
             </form>
+            <div class="field col-12 md:col-4">
+                <p-calendar
+                    [(ngModel)]="fechas"
+                    selectionMode="range"
+                    [readonlyInput]="true"
+                    inputId="range"
+                    dateFormat="dd/mm/yy"
+                    class="text-center appearance-none border-none p-3 w-full outline-none text-xl block mb-4 bg-black-alpha-10 text-black-alpha-60"
+                    style="border-radius: 30px"
+                >
+                </p-calendar>
+            </div>
         </div>
 
         <ng-template #elseBlock>
@@ -57,8 +56,6 @@
                 />
             </form>
         </ng-template>
-
-
     </div>
 
     <ng-template pTemplate="footer">
@@ -75,7 +72,7 @@
                 pButton
                 pRipple
                 icon="pi pi-check"
-                (click)="cerrar({ estado: true })"
+                (click)="guardar({ estado: true })"
                 label="Guardar"
             ></button>
         </div>

@@ -44,10 +44,30 @@ export class TareasService {
     }
 
     completarTarea(tarea: Tarea): Observable<Tarea> {
-        const t: Omit<Tarea, 'createAt' | 'updatedAt'> = {...tarea, finalizado: !tarea.finalizado}
+        const t: Tarea = { ...tarea, finalizado: !tarea.finalizado };
 
         return this.http
             .put<void>(`${this.url}/tarea`, t, { headers: this.headers })
             .pipe(map(() => t));
+    }
+
+    actualizarTarea(tarea: Tarea): Observable<Tarea> {
+        return this.http.put<Tarea>(`${this.url}/tarea`, tarea, {
+            headers: this.headers,
+        });
+    }
+
+    agregarTarea(tarea: Tarea): Observable<Tarea> {
+        return this.http.post<Tarea>(`${this.url}/tarea`, tarea, {
+            headers: this.headers,
+        });
+    }
+
+    eliminarTarea(id: number): Observable<number> {
+        return this.http
+            .delete<number>(`${this.url}/tarea/${id}`, {
+                headers: this.headers,
+            })
+            .pipe(map(() => id));
     }
 }

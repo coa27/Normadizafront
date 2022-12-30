@@ -76,7 +76,7 @@
 </ng-template>
 
 <app-dialog
-    [estado]="dialog"
+    *ngIf="dialog"
     [nombre]="nombre"
     [titulo]="tituloDialog"
     (onAction)="accion($event)"

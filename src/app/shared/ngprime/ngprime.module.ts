@@ -11,6 +11,9 @@ import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
 import { MenuModule } from 'primeng/menu';
+import { CalendarModule } from 'primeng/calendar';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+
 
 @NgModule({
     declarations: [],
@@ -26,6 +29,8 @@ import { MenuModule } from 'primeng/menu';
         MessageModule,
         ToastModule,
         MenuModule,
+        CalendarModule,
+        InputTextareaModule
     ],
 })
 export class NgprimeModule {}
